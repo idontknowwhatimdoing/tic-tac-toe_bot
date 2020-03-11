@@ -1,4 +1,9 @@
 "use strict";
+const getRandomIntInclusive = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 const render = (id) => {
     board[id].textContent = movesPlayed[id];
 };
@@ -22,18 +27,26 @@ const checkWinner = (player) => {
         document.body.insertBefore(drawTitle, document.getElementById("title").nextSibling);
     }
 };
+const botMove = () => {
+    let id = getRandomIntInclusive(0, 8);
+    while (movesPlayed[id]) {
+        id = getRandomIntInclusive(0, 8);
+        console.log("generating an other index ...");
+    }
+    movesPlayed[id] = 'O';
+    render(id);
+    checkWinner('O');
+};
 const makeMove = (id) => {
     if (!movesPlayed[id] && !winner) {
-        let player = xIsNext ? 'X' : 'O';
-        movesPlayed[id] = player;
-        xIsNext = !xIsNext;
+        movesPlayed[id] = 'X';
         render(id);
-        checkWinner(player);
+        checkWinner('X');
+        botMove();
     }
 };
 const board = document.getElementsByClassName("item");
 let movesPlayed = Array(9).fill(null);
-let xIsNext = true;
 let winner = null;
 for (let i = 0; i < board.length; i++)
     board[i].addEventListener("click", () => makeMove(i));

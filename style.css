@@ -1,0 +1,23 @@
+body {
+	font-family: 'Nunito', sans-serif;
+	text-align: center;
+	background: #3d3d3d;
+	color: darkorange;
+}
+
+.row {
+	display: flex;
+	justify-content: center;
+}
+
+.item {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: xx-large;
+	font-weight: bolder;
+	width: 200px;
+	height: 200px;
+	border: 1px solid;
+	background: black;
+}

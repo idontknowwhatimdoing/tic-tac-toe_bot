@@ -1,3 +1,12 @@
+const board = document.getElementsByClassName("item");
+let movesPlayed = Array(9).fill(null);
+let winner: any = null;
+
+for (let i = 0; i < board.length; i++)
+	board[i].addEventListener("click", () => makeMove(i));
+
+
+
 const getRandomIntInclusive = (min: number, max: number) => {
 	min = Math.ceil(min);
 	max = Math.floor(max);
@@ -51,11 +60,3 @@ const makeMove = (id: number) => {
 		botMove();
 	}
 };
-
-
-const board = document.getElementsByClassName("item");
-let movesPlayed = Array(9).fill(null);
-let winner: any = null;
-
-for (let i = 0; i < board.length; i++)
-	board[i].addEventListener("click", () => makeMove(i));
